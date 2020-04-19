@@ -23,7 +23,7 @@ public class ListaEncadeada<E> {
         }
         before.setProximo(midle);
     }
-//
+    //
     public void insertLast(E info) {
         Node<E> last = getLastNode(lista);
         Node<E> next = new Node<>(info, null);
