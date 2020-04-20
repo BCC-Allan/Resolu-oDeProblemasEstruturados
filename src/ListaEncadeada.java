@@ -9,7 +9,16 @@ public class ListaEncadeada<E> {
         lista = new Node<>(info, null);
     }
 
+    public E getFirst() {
+        return lista.getInformacao();
+    }
+
+    public boolean empty() {
+        return lista == null;
+    }
+
     public void insertNext(Node<E> node, E info) {
+
         Node<E> before = findNode(lista, node);
         Node<E> midle;
         Node<E> last = before.getProximo();
@@ -22,6 +31,11 @@ public class ListaEncadeada<E> {
     }
 //
     public void insertLast(E info) {
+        if(lista == null) {
+            insertFirst(info);
+            return;
+        }
+
         Node<E> last = getLastNode(lista);
         Node<E> next = new Node<>(info, null);
 
