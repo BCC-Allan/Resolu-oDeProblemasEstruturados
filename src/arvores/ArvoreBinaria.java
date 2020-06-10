@@ -134,7 +134,6 @@ public class ArvoreBinaria<E> {
         if (nodeRaiz != null){
             emOrdem(nodeRaiz.getEsquerda());
             System.out.println(nodeRaiz);
-            System.out.println(nodeRaiz);
             emOrdem(nodeRaiz.getDireita());
         }
     }
@@ -149,6 +148,16 @@ public class ArvoreBinaria<E> {
         }
     }
 
+    public int altura (Node<Integer> nodeRaiz) {
+        if (nodeRaiz == null)
+            return -1; // altura da árvore vazia
+        else {
+            int he = altura (nodeRaiz.getEsquerda());
+            int hd = altura (nodeRaiz.getDireita());
+            if (he < hd) return hd + 1;
+            else return he + 1;
+        }
+    }
 
     public static void main(String[] args) {
         Node<Integer> raiz =  new Node<>(10);
@@ -169,14 +178,18 @@ public class ArvoreBinaria<E> {
         arvore.insere(test6);
 
 
+//        arvore.printaExercicio("preOrdem");
 //        arvore.printaExercicio("emOrdem");
-        System.out.println(arvore.raiz);
-        System.out.println("--------------------------");
-        arvore.delete(9);
-        System.out.println("--------------------------");
-        System.out.println(arvore.raiz);
+//        arvore.printaExercicio("posOrdem");
 
-        arvore.printaExercicio("emOrdem");
+//        arvore.printaExercicio("emOrdem");
+//        System.out.println("--------------------------");
+//        arvore.delete(9);
+//        System.out.println("--------------------------");
+//        arvore.printaExercicio("emOrdem");
+
+
+        System.out.println(arvore.altura(arvore.raiz));
 
 
     }
