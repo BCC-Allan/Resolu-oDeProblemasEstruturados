@@ -22,21 +22,26 @@ public class ArvoreBinaria<E> {
 
     public void deleteFake(int valor, Node<Integer> raizNode){
         var nodeAnterior = buscaAnterior(valor, raizNode);
-        var direita = raizNode.getDireita();
-        var esquerda = raizNode.getEsquerda();
-        if(raizNode.vazio()){
-            if(esquerda.getInfo().equals(raizNode.getInfo())){
-                nodeAnterior.setEsquerda(null);
-            }else{
+        var direita_anterior = nodeAnterior.getDireita();
+        var esquerda_anterior = nodeAnterior.getEsquerda();
+        var node_atual = buscaNodeFake(valor, raizNode);
+        var direita_atual = node_atual.getDireita();
+        var esquerda_atual = node_atual.getEsquerda();
+
+        if(node_atual.semFilho()){
+            if(direita_anterior.getInfo().equals(node_atual.getInfo())){  // atual na direita do seu pai
                 nodeAnterior.setDireita(null);
+            }else{ // atual na esquerda do seu pai
+                nodeAnterior.setEsquerda(null);
             }
-        }else if(esquerda != null && direita != null){
-           nodeAnterior.setDireita(direita);
-           direita.setEsquerda(esquerda);
-        }else if(esquerda != null){
-            nodeAnterior.setEsquerda(esquerda);
-        }else if(direita != null){
-            nodeAnterior.setDireita(direita);
+
+        }else if(node_atual.doisFilhos()){  // atual tem 2 filhos
+           nodeAnterior.setDireita(direita_atual);
+           direita_atual.setEsquerda(esquerda_atual);
+        }else if(esquerda_atual != null){ // atual tem 1 filho na esquerda
+            nodeAnterior.setEsquerda(esquerda_atual);
+        }else if(direita_atual != null){
+            nodeAnterior.setDireita(direita_atual);
         }
 
     }
@@ -128,8 +133,8 @@ public class ArvoreBinaria<E> {
     private void emOrdem(Node<Integer> nodeRaiz) {
         if (nodeRaiz != null){
             emOrdem(nodeRaiz.getEsquerda());
-//            System.out.println(nodeRaiz);
-            System.out.println(nodeRaiz.test());
+            System.out.println(nodeRaiz);
+            System.out.println(nodeRaiz);
             emOrdem(nodeRaiz.getDireita());
         }
     }
@@ -146,15 +151,15 @@ public class ArvoreBinaria<E> {
 
 
     public static void main(String[] args) {
-        Node<Integer> raiz =  new Node<Integer>(10);
+        Node<Integer> raiz =  new Node<>(10);
         ArvoreBinaria<Integer> arvore = new ArvoreBinaria<>(raiz);
 
-        var test1 = new Node<Integer>(8);
-        var test2 = new Node<Integer>(5);
-        var test3 = new Node<Integer>(9);
-        var test4 = new Node<Integer>(12);
-        var test5 = new Node<Integer>(15);
-        var test6 = new Node<Integer>(11);
+        var test1 = new Node<>(8);
+        var test2 = new Node<>(5);
+        var test3 = new Node<>(9);
+        var test4 = new Node<>(12);
+        var test5 = new Node<>(15);
+        var test6 = new Node<>(11);
 
         arvore.insere(test1);
         arvore.insere(test2);
@@ -164,16 +169,14 @@ public class ArvoreBinaria<E> {
         arvore.insere(test6);
 
 
-//        arvore.printaExercicio("preOrdem");
 //        arvore.printaExercicio("emOrdem");
-//        arvore.printaExercicio("posOrdem");
-//        arvore.buscaNode(9);
-
-        arvore.printaExercicio("emOrdem");
+        System.out.println(arvore.raiz);
         System.out.println("--------------------------");
         arvore.delete(9);
-//        System.out.println("--------------------------");
-//        arvore.printaExercicio("emOrdem");
+        System.out.println("--------------------------");
+        System.out.println(arvore.raiz);
+
+        arvore.printaExercicio("emOrdem");
 
 
     }

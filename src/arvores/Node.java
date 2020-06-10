@@ -42,14 +42,14 @@ public class Node<E> {
         return this.info.toString();
     }
 
-
-    public String test() {
-        return "Node{" +
-                "info=" + info +
-                ", esquerda=" + esquerda +
-                ", direita=" + direita +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Node{ " +
+//                "info=" + info +
+//                ", esquerda=" + esquerda +
+//                ", direita=" + direita +
+//                "} ";
+//    }
 
     public Node(E info) {
         this.info = info;
@@ -59,8 +59,12 @@ public class Node<E> {
         System.out.printf("raiz: %s%nesquerda: %s %ndireita: %s%n",getInfo(),this.esquerda, this.direita);
     }
 
-    public boolean vazio(){
+    public boolean semFilho(){
         return this.esquerda == null && this.getDireita() == null;
+    }
+
+    public boolean doisFilhos() {
+        return this.direita != null && this.esquerda != null;
     }
 
 
