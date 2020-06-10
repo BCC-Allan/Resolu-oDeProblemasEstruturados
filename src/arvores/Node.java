@@ -42,13 +42,27 @@ public class Node<E> {
         return this.info.toString();
     }
 
+
+    public String test() {
+        return "Node{" +
+                "info=" + info +
+                ", esquerda=" + esquerda +
+                ", direita=" + direita +
+                '}';
+    }
+
     public Node(E info) {
         this.info = info;
     }
 
-    public Boolean vazio(){
-        return this.esquerda == null && this.direita == null;
+    public void printaOsDois(){
+        System.out.printf("raiz: %s%nesquerda: %s %ndireita: %s%n",getInfo(),this.esquerda, this.direita);
     }
+
+    public boolean vazio(){
+        return this.esquerda == null && this.getDireita() == null;
+    }
+
 
 
 

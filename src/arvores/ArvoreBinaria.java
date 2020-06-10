@@ -1,7 +1,7 @@
 package arvores;
 
 public class ArvoreBinaria<E> {
-    private Node<Integer> raiz;
+    public Node<Integer> raiz;
 
     public ArvoreBinaria(Node<Integer> raiz) {
         this.raiz = raiz;
@@ -14,6 +14,61 @@ public class ArvoreBinaria<E> {
 
     public void setRaiz(Node<Integer> raiz) {
         this.raiz = raiz;
+    }
+
+    public void delete(int valorDeletar){
+        deleteFake(valorDeletar, raiz);
+    }
+
+    public void deleteFake(int valor, Node<Integer> raizNode){
+        var nodeAnterior = buscaAnterior(valor, raizNode);
+        var direita = raizNode.getDireita();
+        var esquerda = raizNode.getEsquerda();
+        if(raizNode.vazio()){
+            if(esquerda.getInfo().equals(raizNode.getInfo())){
+                nodeAnterior.setEsquerda(null);
+            }else{
+                nodeAnterior.setDireita(null);
+            }
+        }else if(esquerda != null && direita != null){
+           nodeAnterior.setDireita(direita);
+           direita.setEsquerda(esquerda);
+        }else if(esquerda != null){
+            nodeAnterior.setEsquerda(esquerda);
+        }else if(direita != null){
+            nodeAnterior.setDireita(direita);
+        }
+
+    }
+
+    public Node<Integer> buscaAnterior(int valor, Node<Integer> raizNode){
+        if(valor == raizNode.getEsquerda().getInfo() || valor == raizNode.getDireita().getInfo()){
+            return raizNode;
+        }else if(valor > raizNode.getInfo()){
+            return buscaAnterior(valor, raizNode.getDireita());
+        }else if(valor < raizNode.getInfo()) {
+            return buscaAnterior(valor, raizNode.getEsquerda());
+        }else{
+            return new Node<Integer>(-1);
+        }
+    }
+
+    public void buscaNode(int valor){
+        buscaNodeFake(valor, raiz).printaOsDois();
+    }
+
+    public Node<Integer> buscaNodeFake(int valor, Node<Integer> raizNode){
+
+        if(valor == raizNode.getInfo()){
+            return raizNode;
+        }else if(valor > raizNode.getInfo()){
+            return buscaNodeFake(valor, raizNode.getDireita());
+        }else if(valor < raizNode.getInfo()) {
+            return buscaNodeFake(valor, raizNode.getEsquerda());
+        }else{
+            return new Node<Integer>(-1);
+        }
+
     }
 
     public void insere(Node<Integer> node){
@@ -58,6 +113,7 @@ public class ArvoreBinaria<E> {
             case "posOrdem":
                 posOrdem(raiz);
                 break;
+
         }
     }
 
@@ -72,7 +128,8 @@ public class ArvoreBinaria<E> {
     private void emOrdem(Node<Integer> nodeRaiz) {
         if (nodeRaiz != null){
             emOrdem(nodeRaiz.getEsquerda());
-            System.out.println(nodeRaiz);
+//            System.out.println(nodeRaiz);
+            System.out.println(nodeRaiz.test());
             emOrdem(nodeRaiz.getDireita());
         }
     }
@@ -86,6 +143,7 @@ public class ArvoreBinaria<E> {
             preOrdem(nodeRaiz.getDireita());
         }
     }
+
 
     public static void main(String[] args) {
         Node<Integer> raiz =  new Node<Integer>(10);
@@ -105,9 +163,18 @@ public class ArvoreBinaria<E> {
         arvore.insere(test5);
         arvore.insere(test6);
 
+
 //        arvore.printaExercicio("preOrdem");
 //        arvore.printaExercicio("emOrdem");
 //        arvore.printaExercicio("posOrdem");
+//        arvore.buscaNode(9);
+
+        arvore.printaExercicio("emOrdem");
+        System.out.println("--------------------------");
+        arvore.delete(9);
+//        System.out.println("--------------------------");
+//        arvore.printaExercicio("emOrdem");
+
 
     }
 }
