@@ -39,15 +39,15 @@ public class Node<E> {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "info=" + info +
-                ", esquerda=" + esquerda +
-                ", direita=" + direita +
-                '}';
+        return this.info.toString();
     }
 
     public Node(E info) {
         this.info = info;
+    }
+
+    public Boolean vazio(){
+        return this.esquerda == null && this.direita == null;
     }
 
 
