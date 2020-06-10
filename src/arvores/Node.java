@@ -39,6 +39,11 @@ public class Node<E> {
 
     @Override
     public String toString() {
+        return this.info.toString();
+    }
+
+
+    public String test() {
         return "Node{" +
                 "info=" + info +
                 ", esquerda=" + esquerda +
@@ -49,6 +54,15 @@ public class Node<E> {
     public Node(E info) {
         this.info = info;
     }
+
+    public void printaOsDois(){
+        System.out.printf("raiz: %s%nesquerda: %s %ndireita: %s%n",getInfo(),this.esquerda, this.direita);
+    }
+
+    public boolean vazio(){
+        return this.esquerda == null && this.getDireita() == null;
+    }
+
 
 
 
