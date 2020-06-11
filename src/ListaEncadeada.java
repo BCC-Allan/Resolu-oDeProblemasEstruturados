@@ -1,4 +1,8 @@
 public class ListaEncadeada<E> {
+    public Node<E> getLista() {
+        return lista;
+    }
+
     private Node<E> lista;
 
     public ListaEncadeada() {
@@ -12,6 +16,7 @@ public class ListaEncadeada<E> {
     public E getFirst() {
         return lista.getInformacao();
     }
+
 
     public boolean empty() {
         return lista == null;
@@ -59,6 +64,10 @@ public class ListaEncadeada<E> {
         }
     }
 
+    public void gambis(Node<E> node){
+        findNode(lista, node);
+    }
+
     //penultimo
     private Node<E> findOneToLastNode(Node<E> baseNode) {
         if (baseNode.getProximo() == null) {
@@ -84,7 +93,7 @@ public class ListaEncadeada<E> {
 
     @Override
     public String toString() {
-        return "ListaEncadeada[" + lista.toString() + ']';
+        return "ListaEncadeada[" + lista.toString() + "]";
     }
 
 //    public static void main(String[] args) {
