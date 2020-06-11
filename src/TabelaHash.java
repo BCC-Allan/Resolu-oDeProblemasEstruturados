@@ -2,11 +2,7 @@
 
 public class TabelaHash {
     public int colisao; // numero de colisoes da tabela
-    public NodeTabela[] tabelas = new NodeTabela[10];
-
-    public TabelaHash() {
-
-    }
+    public NodeTabela[] tabelas;
 
     public TabelaHash(int max) {
         tabelas = new NodeTabela[max];
@@ -14,11 +10,12 @@ public class TabelaHash {
 
     public void insere(int chave){
         var indice = h(chave);
-        var node = new NodeTabela(chave);
 
         if (tabelas[indice] == null) {
+            var node = new NodeTabela(chave);
             tabelas[indice] = node;
         }else{
+            var node = tabelas[indice];
             encadeamento(node, chave);
             System.out.println("Break");
         }
@@ -34,11 +31,11 @@ public class TabelaHash {
     }
 
     public static void main(String[] args) {
-        TabelaHash tabelas = new TabelaHash();
+        TabelaHash tabelas = new TabelaHash(10);
         tabelas.insere(155);
         tabelas.insere(255);
 
-        System.out.println(tabelas.tabelas[5]);
+        System.out.println(tabelas.tabelas[5].getLista());
 
 
 
