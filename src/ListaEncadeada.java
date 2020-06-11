@@ -87,22 +87,22 @@ public class ListaEncadeada<E> {
         return "ListaEncadeada[" + lista.toString() + ']';
     }
 
-    public static void main(String[] args) {
-        ListaEncadeada<Integer> lista = new ListaEncadeada<>();
-        lista.insertFirst(39);
-        lista.insertLast(40);
-        lista.insertLast(41);
-        lista.insertLast(42);
-        lista.insertLast(43);
-        lista.insertLast(45);
-        lista.insertLast(46);
-        Node<Integer> oldNode = new Node<>(40, null);
-        lista.insertNext(oldNode, 99);
-
-        lista.removeLast();
-
-        System.out.println(lista.toString());
-
-    }
+//    public static void main(String[] args) {
+//        ListaEncadeada<Integer> lista = new ListaEncadeada<>();
+//        lista.insertFirst(39);
+//        lista.insertLast(40);
+//        lista.insertLast(41);
+//        lista.insertLast(42);
+//        lista.insertLast(43);
+//        lista.insertLast(45);
+//        lista.insertLast(46);
+//        Node<Integer> oldNode = new Node<>(40, null);
+//        lista.insertNext(oldNode, 99);
+//
+//        lista.removeLast();
+//
+//        System.out.println(lista.toString());
+//
+//    }
 
 }
