@@ -76,7 +76,7 @@ public class ArvoreBinaria<E> {
             setRaiz(node);
         }else{
             var bla = escolheLado(raiz, node);
-//            System.out.println(bla);
+//          System.out.println(bla);
         }
 
     }
@@ -141,6 +141,21 @@ public class ArvoreBinaria<E> {
             preOrdem(nodeRaiz.getDireita());
         }else if(nodeRaiz.getDireita() != null){
             preOrdem(nodeRaiz.getDireita());
+        }
+    }
+
+    public int altura(){
+       return altura(raiz);
+    }
+
+    public int altura(Node<Integer> atual) {
+        if(atual == null || (atual.getEsquerda() == null && atual.getDireita() == null))
+            return 0;
+        else {
+            if (altura(atual.getEsquerda()) > altura(atual.getDireita()))
+                return ( 1 + altura(atual.getEsquerda()) );
+            else
+                return ( 1 + altura(atual.getDireita()) );
         }
     }
 
