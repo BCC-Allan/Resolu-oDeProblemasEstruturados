@@ -53,6 +53,10 @@ public class ArvoreBinaria<E> {
         }
     }
 
+    public Node<Integer> buscaAnterior(int valor) {
+        return buscaAnterior(valor, raiz);
+    }
+
     public void buscaNode(int valor){
         buscaNodeFake(valor, raiz).printaOsDois();
     }
@@ -75,8 +79,7 @@ public class ArvoreBinaria<E> {
         if (raiz == null){
             setRaiz(node);
         }else{
-            var bla = escolheLado(raiz, node);
-//          System.out.println(bla);
+            escolheLado(raiz, node);
         }
 
     }
@@ -158,7 +161,6 @@ public class ArvoreBinaria<E> {
                 return ( 1 + altura(atual.getDireita()) );
         }
     }
-
 
     public static void main(String[] args) {
         Node<Integer> raiz =  new Node<Integer>(10);
